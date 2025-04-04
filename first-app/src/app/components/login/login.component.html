@@ -1,0 +1,93 @@
+<p>login works!</p>
+<p>{{title}}</p>
+<br>
+<button [disabled]="btnDisabled">{{btnLabel}}</button>
+<br>
+<h3 [class.corBlue]= "idade <= 25" [class.corOrange]=" idade > 25">Muda de cor com a idade</h3>
+
+<h3>EVENT BIDING</h3>
+<h4>Sua idade: {{idade}}</h4>
+<button (click)="incrementar()">+</button>
+<button (click)="decrementar()">-</button>
+
+<h6>TWO-WAY BIDING</h6>
+<input type="text" [(ngModel)]="person.nome" />
+{{ person | json }}
+
+<h3>ngClass e ngStyle</h3>
+<div [ngClass]="{
+    'corBlue': idade <= 25,
+    'corOrange': idade > 25
+}"> teste ng Class</div>
+
+<div [ngStyle]="{
+    background: idade <= 25 ? 'blue' : 'violet',
+    color: idade <= 25 ? 'white' : 'magenta',
+}"> teste ng style</div>
+
+
+<h3>Template Variables</h3>
+<input #name value="Teste" />
+{{name.value}}
+
+<input #name1 (acaoMudarButton)="name1.value" />
+ {{name1.value}}
+<button (click)="name1.value = name.value">Mudar</button>
+
+<h2 #h>TESTE 2</h2>
+
+
+ {{h.innerText}}
+<h3>ViewChild</h3>
+<input #someInput />
+<button (click)="acaoMudarButton()">Mudar</button>
+
+
+<h2>Control flow</h2>
+
+  @if (idade > 30){
+    <h6 [ngStyle]="{ 
+      'background-color': idade < 25 ? 'purple' : 'green', 
+      'color': idade > 30 ? 'white' : 'black' 
+    }">Idade acima é maior que 30 , a idade atual é: {{idade}}</h6>
+  }
+
+  @if (idade == 30){
+    <h6 [ngClass]="{ 'corBlue': idade == 30 }">Idade acima é igual a 30</h6>
+  }
+
+  @if (idade < 30){
+    <h6 [ngClass]="{ 'corPurple': idade < 25, 'corOrange': idade > 25 }">Idade acima menor que 30, a idade atual é: {{idade}}</h6>
+  }
+
+  <button #btn (click)="btn.disabled= true">Desabilitar botão</button>
+  <button #btn (click)="btn.disabled= false ; idade = 60">Habilitar botão</button>
+
+  
+  @if (btn.disabled){
+    <h6>Botão está desasbilitado</h6>
+  }@else {
+    <h6>Botão está habilitado</h6>
+  }
+
+  <h5 *ngIf="idade == 30; else elseBlock">
+    Idade igual a 30
+  </h5>
+    <ng-template #elseBlock>
+        <h6>Idade não é 30</h6>
+    </ng-template>
+
+  <div *ngIf="idade == 30; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>Idade igual a 30 antes da V17</ng-template>
+    <ng-template #elseBlock>Idade não é 30</ng-template>
+
+    @for (item of items; track item.name;) {
+        <li>{{ item.name }}</li>
+        <li>{{ item.value }}</li>
+        } @empty {
+        <li>There are no items.</li>
+        }
+<br>
+    @for (item of items; track item.id; let posicao = $index, e = $even) {
+        Item #{{ posicao + 1 }}: {{ item.name }}
+    }
