@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { FormsModule } from '@angular/forms';
 import { ChildcomponentComponent } from './childcomponent/childcomponent.component';
 import { ButtonModule } from 'primeng/button';
+import { delay, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent implements AfterViewInit  {
   }
   
   
-  btnDisabled = true;
+  btnDisabled = false;
   btnLabel = 'Login';
   
   condition = true;
@@ -51,6 +52,12 @@ export class LoginComponent implements AfterViewInit  {
     this.mostrarLista = true;
   }
 
+  public loadingData$: Observable<any> = of([
+    {name: 'Item 1', value: 10},
+    {name: 'Item 2', value: 20},
+    {name: 'Item 3', value: 30},
+  ]).pipe(delay(2000));
+  
   ngOnInit(): void {
     setTimeout(() => {
       this.items = [
@@ -64,8 +71,6 @@ export class LoginComponent implements AfterViewInit  {
         { name: 'Bermuda', value: 80 },
         { name: 'Camisa', value: 90 },
         { name: 'Calça', value: 100 }
-
-
       ];
     }, 10000);
     setTimeout(() => {

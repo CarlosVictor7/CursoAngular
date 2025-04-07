@@ -1,31 +1,30 @@
 <p>login works!</p>
 <p>{{title}}</p>
-<br>
+<hr>
 <button [disabled]="btnDisabled">{{btnLabel}}</button>
-<br>
+<hr>
 <h3 [class.corBlue]= "idade <= 25" [class.corOrange]=" idade > 25">Muda de cor com a idade</h3>
-
+<hr>
 <h3>EVENT BIDING</h3>
 <h4>Sua idade: {{idade}}</h4>
 <button (click)="incrementar()">+</button>
 <button (click)="decrementar()">-</button>
-
+<hr>
 <h6>TWO-WAY BIDING</h6>
 <input type="text" [(ngModel)]="person.nome" />
 {{ person | json }}
-
+<hr>
 <h3>ngClass e ngStyle</h3>
 <div [ngClass]="{
     'corBlue': idade <= 25,
     'corOrange': idade > 25
 }"> teste ng Class</div>
-
 <div [ngStyle]="{
     background: idade <= 25 ? 'blue' : 'violet',
     color: idade <= 25 ? 'white' : 'magenta',
 }"> teste ng style</div>
 
-
+<hr>
 <h3>Template Variables</h3>
 <input #name value="Teste" />
 {{name.value}}
@@ -38,10 +37,12 @@
 
 
  {{h.innerText}}
-<h3>ViewChild</h3>
+<hr>
+ <h3>ViewChild</h3>
 <input #someInput />
 <button (click)="acaoMudarButton()">Mudar</button>
 
+<hr>
 
 <h2>Control flow</h2>
 
@@ -121,8 +122,7 @@
 <input type="text" [(ngModel)]="novoItem" placeholder="Digite algo..." />
 <p-button label="Adicionar" (click)="adicionarItem()"></p-button>
 
-<br><br>
-
+<br>
 <p-button label="Check" (click)="mostrar()"></p-button>
 
 <br><br>
@@ -148,6 +148,7 @@
   let o = $odd;
 ) {
   <table border="1">
+    
     <tr>
       <th>Name</th>
       <th>Value</th>
@@ -206,5 +207,18 @@
     <p>Os dados não foram encontrados</p>
   }
 }
+<hr>
+<br>
+<p-button (click)="btnDisabled = true">Clique aqui</p-button>
+@defer(when loadingData$ | async) {
+  <app-childcomponent></app-childcomponent>
+  } @placeholder{
+    <p>Future Component</p>
+  } @loading(minimum 5s) {
+    <p>Loading component...</p>
+  } @error {
+    <p>Error loading component</p>
+  } 
 
-
+  <p>{{ loadingData$ | async | json }}</p>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
