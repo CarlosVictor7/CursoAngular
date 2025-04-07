@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChildcomponentComponent } from './childcomponent/childcomponent.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, CommonModule, ChildcomponentComponent],
+  imports: [FormsModule, CommonModule, ChildcomponentComponent, ButtonModule],
   standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -33,6 +34,23 @@ export class LoginComponent implements AfterViewInit  {
   title = 'Login Component';
   constructor() {}
   items: any[] = [];
+  novoItem = '';
+  isVisible = false;
+  loadData() {
+    this.isVisible = true;
+  }
+  mostrarLista = false;
+  lista: string[] = [];
+  adicionarItem() {
+    if (this.novoItem.trim() !== '') {
+      this.lista.push(this.novoItem.trim());
+      this.novoItem = '';
+    }
+  }
+  mostrar() {
+    this.mostrarLista = true;
+  }
+
   ngOnInit(): void {
     setTimeout(() => {
       this.items = [
@@ -40,6 +58,9 @@ export class LoginComponent implements AfterViewInit  {
         { name: 'Item 2', value: 40 },
         { name: 'Item 3', value: 50 }
       ];
+    }, 10000);
+    setTimeout(() => {
+      this.isVisible = false;
     }, 10000);
   } 
   incrementar() {

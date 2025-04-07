@@ -81,7 +81,7 @@
     <ng-template #thenBlock>Idade igual a 30 antes da V17</ng-template>
     <ng-template #elseBlock>Idade não é 30</ng-template>
 
-    @for (item of items; track item.name;) {
+    <!-- @for (item of items; track item.name;) {
         <li>{{ item.name }}</li>
         <li>{{ item.value }}</li>
         } @empty {
@@ -90,4 +90,38 @@
 <br>
     @for (item of items; track item.id; let posicao = $index, e = $even) {
         Item #{{ posicao + 1 }}: {{ item.name }}
+    } -->
+    @if (items.length > 0) {
+      <ul>
+        @for (item of items; track item.name) {
+          <li>{{ item.name }} - {{ item.value }}</li>
+        }
+      </ul>
     }
+    
+    <p-button 
+    [loading]="isVisible" 
+    (click)="loadData()" 
+    label="Check">
+  </p-button>
+
+  <h3>Adicionar item à lista</h3>
+
+<input type="text" [(ngModel)]="novoItem" placeholder="Digite algo..." />
+<p-button label="Adicionar" (click)="adicionarItem()"></p-button>
+
+<br><br>
+
+<p-button label="Check" (click)="mostrar()"></p-button>
+
+<br><br>
+
+@if (mostrarLista && lista.length > 0) {
+  <ul>
+    @for (item of lista; track item) {
+      <li>{{ item }}</li>
+    }
+  </ul>
+} @else if (mostrarLista) {
+  <p>A lista está vazia.</p>
+}
