@@ -92,11 +92,22 @@
         Item #{{ posicao + 1 }}: {{ item.name }}
     } -->
     @if (items.length > 0) {
-      <ul>
+      <table border="1">
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
         @for (item of items; track item.name) {
-          <li>{{ item.name }} - {{ item.value }}</li>
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.value }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="2">There are no items.</td>
+          </tr>
         }
-      </ul>
+      </table>
     }
     
     <p-button 
@@ -125,3 +136,75 @@
 } @else if (mostrarLista) {
   <p>A lista está vazia.</p>
 }
+<h3>For de posição de itens</h3>
+
+@for (
+  item of items; track item.name;
+  let i = $index;
+  let c = $count;
+  let f = $first;
+  let l = $last;
+  let e = $even;
+  let o = $odd;
+) {
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Index</th>
+      <th>Count</th>
+      <th>First</th>
+      <th>Last</th>
+      <th>Even</th>
+      <th>Odd</th>
+    </tr>
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.value }}</td>
+      <td>{{ i }}</td>
+      <td>{{ c }}</td>
+      <td>{{ f }}</td>
+      <td>{{ l }}</td>
+      <td>{{ e }}</td>
+      <td>{{ o }}</td>
+    </tr>
+  </table>
+}
+<!-- <ng-cointainer
+  *ngFor="
+    let item of items; 
+    let i = $index;
+    let c = $count;
+    let f = $first;
+    let l = $last;
+    let e = $even;
+    let o = $odd;
+    trackBy.trackByFn;
+  "
+>
+<p>{{ item.name }}</p>
+<p>{{ item.value }}</p>
+<p>{{ i }}</p>
+<p>{{ c }}</p>
+<p>{{ f }}</p>
+<p>{{ l }}</p>
+<p>{{ e }}</p>
+<p>{{ o }}</p>
+</ng-cointainer>  
+ -->
+<hr>
+<input type="text" [(ngModel)]="switchCondition" placeholder="Digite A ou B" />
+
+@switch (switchCondition) {
+  @case ('A') {
+    <p>Sim, sua letra é: A</p>
+  }
+  @case ('B') {
+    <p>Sim, sua letra é: B</p>
+  }
+  @default {
+    <p>Os dados não foram encontrados</p>
+  }
+}
+
+

@@ -54,9 +54,18 @@ export class LoginComponent implements AfterViewInit  {
   ngOnInit(): void {
     setTimeout(() => {
       this.items = [
-        { name: 'Item 1', value: 10 },
-        { name: 'Item 2', value: 40 },
-        { name: 'Item 3', value: 50 }
+        { name: 'Meia', value: 10 },
+        { name: 'Boné', value: 20 },
+        { name: 'Tênis', value: 30 },
+        { name: 'Saia', value: 40 },
+        { name: 'Cinto', value: 50 },
+        { name: 'Camiseta', value: 60 },
+        { name: 'Jaqueta', value: 70 },
+        { name: 'Bermuda', value: 80 },
+        { name: 'Camisa', value: 90 },
+        { name: 'Calça', value: 100 }
+
+
       ];
     }, 10000);
     setTimeout(() => {
@@ -81,5 +90,13 @@ export class LoginComponent implements AfterViewInit  {
   //   // name1.value = name.value;
   //   this.someInput.nativeElement.value = 'teste';
   // }
+  public trackByFn(index: number) {
+    return index;
+  }
 
+  switchCondition = '';
+
+  mudarLetra(novaLetra: string) {
+    this.switchCondition = novaLetra;
+  }
 }
