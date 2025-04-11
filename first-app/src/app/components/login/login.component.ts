@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input, effect, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChildcomponentComponent } from './childcomponent/childcomponent.component';
 import { ButtonModule } from 'primeng/button';
 import { delay, Observable, of } from 'rxjs';
+import { ListboxModule } from 'primeng/listbox';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, CommonModule, ChildcomponentComponent, ButtonModule],
+  imports: [FormsModule, CommonModule, ChildcomponentComponent, ListboxModule, ButtonModule],
   standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -32,8 +33,14 @@ export class LoginComponent implements AfterViewInit  {
 
   person = {nome: "Carlos"}
   
-  title = 'Login Component';
-  constructor() {}
+  @Input({required: true}) title!: string;
+  @Input() titleSignal!: WritableSignal<any>;
+
+  constructor() {
+    effect(() => {
+      console.log(this.titleSignal);
+    })
+  }
   items: any[] = [];
   novoItem = '';
   isVisible = false;

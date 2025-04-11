@@ -1,0 +1,13 @@
+<div style="background: rgb(15, 173, 220);">
+    <p>{{ fullName() }}</p>
+    <p>{{ firstName() }}</p>
+    <p>{{ lastName() }}</p>
+    <p-button (click)="updateNames()">Atualizar Nomes</p-button>
+</div>
+<hr>
+<div style="background: white;">
+    <p>{{ array() | json }}</p>
+    <p-button (click)="add()">Atualizar Array</p-button>
+</div>
+
+<app-login [title]="firstName()"></app-login>
