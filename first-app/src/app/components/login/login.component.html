@@ -1,4 +1,4 @@
-<p>login works!</p>
+<!-- <p>login works!</p>
 <p>{{title}}</p>
 <hr>
 <button [disabled]="btnDisabled">{{btnLabel}}</button>
@@ -82,7 +82,7 @@
     <ng-template #thenBlock>Idade igual a 30 antes da V17</ng-template>
     <ng-template #elseBlock>Idade não é 30</ng-template>
 
-    <!-- @for (item of items; track item.name;) {
+    @for (item of items; track item.name;) {
         <li>{{ item.name }}</li>
         <li>{{ item.value }}</li>
         } @empty {
@@ -91,7 +91,7 @@
 <br>
     @for (item of items; track item.id; let posicao = $index, e = $even) {
         Item #{{ posicao + 1 }}: {{ item.name }}
-    } -->
+    }
     @if (items.length > 0) {
       <table border="1">
         <tr>
@@ -125,9 +125,9 @@
 <br>
 <p-button label="Check" (click)="mostrar()"></p-button>
 
-<br><br>
+<br><br> -->
 
-@if (mostrarLista && lista.length > 0) {
+<!-- @if (mostrarLista && lista.length > 0) {
   <ul>
     @for (item of lista; track item) {
       <li>{{ item }}</li>
@@ -170,7 +170,8 @@
       <td>{{ o }}</td>
     </tr>
   </table>
-}
+} -->
+<!-- Não descomentar esse *ngFor-->
 <!-- <ng-cointainer
   *ngFor="
     let item of items; 
@@ -194,7 +195,7 @@
 </ng-cointainer>  
  -->
 <hr>
-<input type="text" [(ngModel)]="switchCondition" placeholder="Digite A ou B" />
+<!-- <input type="text" [(ngModel)]="switchCondition" placeholder="Digite A ou B" />
 
 @switch (switchCondition) {
   @case ('A') {
@@ -208,8 +209,8 @@
   }
 }
 <hr>
-<br>
-<p-button (click)="btnDisabled = true">Clique aqui</p-button>
+<br> -->
+<!-- <p-button (click)="btnDisabled = true">Clique aqui</p-button>
 @defer(when loadingData$ | async) {
   <app-childcomponent></app-childcomponent>
   } @placeholder{
@@ -223,5 +224,29 @@
   <p>{{ loadingData$ | async | json }}</p>
 
   <h2 style="margin-bottom: 10px;" >{{ title }}</h2>
-  <h2 style="margin-bottom: 10px;" >{{ titleSignal() ?? '' }}</h2>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <h2 style="margin-bottom: 10px;" >{{ titleSignal() ?? '' }}</h2> -->
+
+  <!-- <app-childcomponent (addItem)="receiveEmitter($event)"></app-childcomponent>
+  <p style="color: aliceblue;"> {{ response | json }}</p>
+  @if (response.id < 12) {
+    <h5>VOCÊ É CRIANÇA</h5>
+  } @else if (response.id < 18) {
+    <h5>VOCÊ É ADOLESCENTE</h5>
+  } @else if (response.id < 65) {
+    <h5>VOCÊ É ADULTO</h5>
+  } @else {
+    <h5>VOCÊ É IDOSO</h5>
+  } -->
+
+  <h2>Dados do Usuário</h2>
+
+<!-- Componente filho recebe os dados via [user] e emite o evento userUpdated -->
+<app-childcomponent [user]="currentUser" (userUpdated)="onUserUpdated($event)"></app-childcomponent>
+
+<div style="margin-top:20px">
+  <h3>Informações Atualizadas:</h3>
+  <p><strong>Nome:</strong> {{ currentUser.name }}</p>
+  <p><strong>Email:</strong> {{ currentUser.email }}</p>
+</div>
+
+  

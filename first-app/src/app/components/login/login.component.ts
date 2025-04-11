@@ -5,6 +5,7 @@ import { ChildcomponentComponent } from './childcomponent/childcomponent.compone
 import { ButtonModule } from 'primeng/button';
 import { delay, Observable, of } from 'rxjs';
 import { ListboxModule } from 'primeng/listbox';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +19,29 @@ import { ListboxModule } from 'primeng/listbox';
 export class LoginComponent implements AfterViewInit  {
   @ViewChild('someInput') someInput!: ElementRef;
   
+  // receiveEmitter($event:any){
+  //   console.log($event)
+  //   this.response = $event
+  // }
+
+  response: any = {}
 
   ngAfterViewInit(): void {
     console.log('Valor do input:'
     );
   }
   
-  
+  currentUser = {
+    name: 'John Doe',
+    email: 'john@doe.com'
+  };
+
+  onUserUpdated(updatedUser: { name: string, email: string }) {
+    this.currentUser = updatedUser;
+    console.log('Usuário atualizado:', updatedUser);
+  }
+
+
   btnDisabled = false;
   btnLabel = 'Login';
   

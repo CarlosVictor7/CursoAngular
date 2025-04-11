@@ -1,2 +1,18 @@
-<p>Quer namorar comigo?</p>
-<img src="https://i.pinimg.com/736x/89/4e/98/894e98a7dd73da2dde06b181b4daca5e.jpg" alt="Image from Pinterest" />
+<!-- <p>Quer namorar comigo?</p>
+<img src="https://i.pinimg.com/736x/89/4e/98/894e98a7dd73da2dde06b181b4daca5e.jpg" alt="Image from Pinterest" /> -->
+<!-- <p-button (onClick)="addElement()">CLICK</p-button> -->
+<hr>
+<div>
+    <h3>Editar Usuário</h3>
+    <label>
+      Nome:
+      <input type="text" [(ngModel)]="userToEdit.name" />
+    </label>
+    <br>
+    <label>
+      Email:
+      <input type="email" [(ngModel)]="userToEdit.email" />
+    </label>
+    <br>
+    <p-button (onClick)="updateUser()">Salvar</p-button>
+  </div>
